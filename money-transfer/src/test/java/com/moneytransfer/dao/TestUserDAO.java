@@ -1,4 +1,4 @@
-package com.taskforce.moneyapp.dao;
+package com.moneytransfer.dao;
 
 import com.moneytransfer.dao.DAOFactory;
 import com.moneytransfer.exception.CustomException;
@@ -40,7 +40,7 @@ public class TestUserDAO {
 	@Test
 	public void testGetUserById() throws CustomException {
 		User u = h2DaoFactory.getUserDAO().getUserById(2L);
-		assertTrue(u.getUserName().equals("test1"));
+		assertTrue(u.getUserName().equals("paul"));
 	}
 
 	@Test
@@ -66,16 +66,16 @@ public class TestUserDAO {
 
 	@Test
 	public void testUpdateUser() throws CustomException {
-		User u = new User(1L, "test2", "test2@gmail.com");
+		User u = new User(1L, "vishal", "vishal@gmail.com");
 		int rowCount = h2DaoFactory.getUserDAO().updateUser(1L, u);
 		// assert one row(user) updated
 		assertTrue(rowCount == 1);
-		assertTrue(h2DaoFactory.getUserDAO().getUserById(1L).getEmailAddress().equals("yanglu@gmail.com"));
+		assertTrue(h2DaoFactory.getUserDAO().getUserById(1L).getEmailAddress().equals("vishal@gmail.com"));
 	}
 
 	@Test
 	public void testUpdateNonExistingUser() throws CustomException {
-		User u = new User(500L, "test2", "test2@gmail.com");
+		User u = new User(500L, "vishal2", "vishal2@gmail.com");
 		int rowCount = h2DaoFactory.getUserDAO().updateUser(500L, u);
 		// assert one row(user) updated
 		assertTrue(rowCount == 0);

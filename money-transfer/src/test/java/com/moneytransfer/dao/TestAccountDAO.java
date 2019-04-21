@@ -1,4 +1,4 @@
-package com.taskforce.moneyapp.dao;
+package com.moneytransfer.dao;
 
 import com.moneytransfer.dao.DAOFactory;
 import com.moneytransfer.exception.CustomException;
@@ -39,7 +39,7 @@ public class TestAccountDAO {
 	@Test
 	public void testGetAccountById() throws CustomException {
 		Account account = h2DaoFactory.getAccountDAO().getAccountById(1L);
-		assertTrue(account.getUserName().equals("test2"));
+		assertTrue(account.getUserName().equals("vishal"));
 	}
 
 	@Test
@@ -51,10 +51,10 @@ public class TestAccountDAO {
 	@Test
 	public void testCreateAccount() throws CustomException {
 		BigDecimal balance = new BigDecimal(10).setScale(4, RoundingMode.HALF_EVEN);
-		Account a = new Account("test2", balance, "CNY");
+		Account a = new Account("vishal", balance, "CNY");
 		long aid = h2DaoFactory.getAccountDAO().createAccount(a);
 		Account afterCreation = h2DaoFactory.getAccountDAO().getAccountById(aid);
-		assertTrue(afterCreation.getUserName().equals("test2"));
+		assertTrue(afterCreation.getUserName().equals("vishal"));
 		assertTrue(afterCreation.getCurrencyCode().equals("CNY"));
 		assertTrue(afterCreation.getBalance().equals(balance));
 	}

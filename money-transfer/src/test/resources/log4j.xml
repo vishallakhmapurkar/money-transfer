@@ -20,7 +20,7 @@
     </appender>
 
 
-    <logger name="com.taskforce.moneyapp" additivity="false">
+    <logger name="com.moneytransfer" additivity="false">
         <level value="DEBUG" />
         <appender-ref ref="CONSOLE" />
     </logger>

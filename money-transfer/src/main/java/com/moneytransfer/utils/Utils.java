@@ -2,9 +2,12 @@ package com.moneytransfer.utils;
 
 import org.apache.log4j.Logger;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Properties;
 
 
@@ -13,7 +16,7 @@ public class Utils {
     private static Properties properties = new Properties();
 
     static Logger log = Logger.getLogger(Utils.class);
-
+    
     public static void loadConfig(String fileName) {
         if (fileName == null) {
             log.warn("loadConfig: config file name cannot be null");

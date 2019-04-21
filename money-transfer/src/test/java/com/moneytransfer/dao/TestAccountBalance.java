@@ -1,4 +1,4 @@
-package com.taskforce.moneyapp.dao;
+package com.moneytransfer.dao;
 
 import com.moneytransfer.dao.AccountDAO;
 import com.moneytransfer.dao.DAOFactory;
@@ -63,7 +63,7 @@ public class TestAccountBalance {
 
 		log.debug("Account From: " + accountFrom);
 
-		log.debug("Account From: " + accountTo);
+		log.debug("Account To: " + accountTo);
 
 		assertTrue(
 				accountFrom.getBalance().compareTo(new BigDecimal(449.9877).setScale(4, RoundingMode.HALF_EVEN)) == 0);

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class Account {
 
-    @JsonIgnore
+    
     private long accountId;
 
     @JsonProperty(required = true)

@@ -1,4 +1,4 @@
-package com.taskforce.moneyapp.services;
+package com.moneytransfer.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.moneytransfer.dao.DAOFactory;

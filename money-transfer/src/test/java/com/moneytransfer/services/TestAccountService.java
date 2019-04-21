@@ -1,4 +1,4 @@
-package com.taskforce.moneyapp.services;
+package com.moneytransfer.services;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
@@ -18,15 +18,6 @@ import java.net.URISyntaxException;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- * Integration testing for RestAPI
- * Test data are initialised from src/test/resources/demo.sql
- * <p>
- * INSERT INTO Account (UserName,Balance,CurrencyCode) VALUES ('test2',100.0000,'USD'); --ID =1
- * INSERT INTO Account (UserName,Balance,CurrencyCode) VALUES ('test1',200.0000,'USD'); --ID =2
- * INSERT INTO Account (UserName,Balance,CurrencyCode) VALUES ('test2',500.0000,'EUR'); --ID =3
- * INSERT INTO Account (UserName,Balance,CurrencyCode) VALUES ('test1',500.0000,'EUR'); --ID =4
- */
 
 public class TestAccountService extends TestService {
 
@@ -47,7 +38,7 @@ public class TestAccountService extends TestService {
         //check the content
         String jsonString = EntityUtils.toString(response.getEntity());
         Account account = mapper.readValue(jsonString, Account.class);
-        assertTrue(account.getUserName().equals("test2"));
+        assertTrue(account.getUserName().equals("vishal"));
     }
 
     /*
@@ -96,7 +87,7 @@ public class TestAccountService extends TestService {
     public void testCreateAccount() throws IOException, URISyntaxException {
         URI uri = builder.setPath("/account/create").build();
         BigDecimal balance = new BigDecimal(10).setScale(4, RoundingMode.HALF_EVEN);
-        Account acc = new Account("test2", balance, "CNY");
+        Account acc = new Account("vishal", balance, "CNY");
         String jsonInString = mapper.writeValueAsString(acc);
         StringEntity entity = new StringEntity(jsonInString);
         HttpPut request = new HttpPut(uri);
@@ -107,7 +98,7 @@ public class TestAccountService extends TestService {
         assertTrue(statusCode == 200);
         String jsonString = EntityUtils.toString(response.getEntity());
         Account aAfterCreation = mapper.readValue(jsonString, Account.class);
-        assertTrue(aAfterCreation.getUserName().equals("test2"));
+        assertTrue(aAfterCreation.getUserName().equals("vishal"));
         assertTrue(aAfterCreation.getCurrencyCode().equals("CNY"));
     }
 
@@ -119,7 +110,7 @@ public class TestAccountService extends TestService {
     @Test
     public void testCreateExistingAccount() throws IOException, URISyntaxException {
         URI uri = builder.setPath("/account/create").build();
-        Account acc = new Account("test1", new BigDecimal(0), "USD");
+        Account acc = new Account("paul", new BigDecimal(0), "USD");
         String jsonInString = mapper.writeValueAsString(acc);
         StringEntity entity = new StringEntity(jsonInString);
         HttpPut request = new HttpPut(uri);

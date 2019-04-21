@@ -1,4 +1,4 @@
-package com.taskforce.moneyapp.services;
+package com.moneytransfer.services;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpDelete;
@@ -18,12 +18,6 @@ import java.net.URISyntaxException;
 import static org.junit.Assert.assertTrue;
 
 
-/**
- * Integration testing for RestAPI
- * Test data are initialised from src/test/resources/demo.sql
- * INSERT INTO User (UserName, EmailAddress) VALUES ('test2','test2@gmail.com');  --ID=1
-   INSERT INTO User (UserName, EmailAddress) VALUES ('test1','test1@gmail.com');  --ID=2
- */
 public class TestUserService extends TestService {
 
     /*
@@ -33,7 +27,7 @@ public class TestUserService extends TestService {
     */
     @Test
     public void testGetUser() throws IOException, URISyntaxException {
-        URI uri = builder.setPath("/user/test2").build();
+        URI uri = builder.setPath("/user/vishal").build();
         HttpGet request = new HttpGet(uri);
         HttpResponse response = client.execute(request);
         int statusCode = response.getStatusLine().getStatusCode();
@@ -42,8 +36,7 @@ public class TestUserService extends TestService {
         //check the content
         String jsonString = EntityUtils.toString(response.getEntity());
         User user = mapper.readValue(jsonString, User.class);
-        assertTrue(user.getUserName().equals("test2"));
-        assertTrue(user.getEmailAddress().equals("test2@gmail.com"));
+        assertTrue(user.getUserName().equals("vishal"));
 
     }
 
@@ -96,7 +89,7 @@ public class TestUserService extends TestService {
     @Test
     public void testCreateExistingUser() throws IOException, URISyntaxException {
         URI uri = builder.setPath("/user/create").build();
-        User user = new User("test1", "test1@gmail.com");
+        User user = new User("vishal", "vishal@gmail.com");
         String jsonInString = mapper.writeValueAsString(user);
         StringEntity entity = new StringEntity(jsonInString);
         HttpPost request = new HttpPost(uri);
@@ -116,7 +109,7 @@ public class TestUserService extends TestService {
     @Test
     public void testUpdateUser() throws IOException, URISyntaxException {
         URI uri = builder.setPath("/user/2").build();
-        User user = new User(2L, "test1", "test1123@gmail.com");
+        User user = new User(2L, "paul", "paul123@gmail.com");
         String jsonInString = mapper.writeValueAsString(user);
         StringEntity entity = new StringEntity(jsonInString);
         HttpPut request = new HttpPut(uri);
@@ -136,7 +129,7 @@ public class TestUserService extends TestService {
     @Test
     public void testUpdateNonExistingUser() throws IOException, URISyntaxException {
         URI uri = builder.setPath("/user/100").build();
-        User user = new User(2L, "test1", "test1123@gmail.com");
+        User user = new User(2L, "paul1", "paul@gmail.com");
         String jsonInString = mapper.writeValueAsString(user);
         StringEntity entity = new StringEntity(jsonInString);
         HttpPut request = new HttpPut(uri);
