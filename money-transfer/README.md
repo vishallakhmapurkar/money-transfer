@@ -50,15 +50,15 @@ Application starts a jetty server on localhost port 8080 An H2 in memory databas
 ##### User : 
 ```sh
 {  
-  "userName":"test1",
-  "emailAddress":"test1@gmail.com"
+  "userName":"vishal",
+  "emailAddress":"vishal@gmail.com"
 } 
 ```
 ##### User Account: : 
 
 ```sh
 {  
-   "userName":"test1",
+   "userName":"vishal",
    "balance":10.0000,
    "currencyCode":"GBP"
 } 
